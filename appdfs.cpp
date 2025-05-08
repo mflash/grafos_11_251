@@ -9,8 +9,7 @@ int main()
   Graph g("exemplos/tinyG.txt");
   DepthFirstSearch dfs(g, "0");
 
-  /*
-      for (auto const &v : g.getVerts())
+  for (auto const &v : g.getVerts())
   {
     cout << v << ": ";
     if (dfs.hasPathTo(v))
@@ -20,5 +19,4 @@ int main()
     }
     cout << endl;
   }
-  */
 }

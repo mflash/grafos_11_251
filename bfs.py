@@ -1,0 +1,49 @@
+from graph import Graph
+from queue import Queue
+
+class BFS:
+    def __init__(self, g, s):
+        self.s = s
+        self.marked = {}
+        self.edgeTo = {}
+        self.distanceTo = {}
+        self.__bfs(g, s)
+
+    def hasPathTo(self, v):
+        if v == self.s:
+            return False
+        return v in self.marked
+
+    def pathTo(self, v):
+        path = []
+        while v != self.s:
+            path.insert(0, v)
+            v = self.edgeTo[v]
+        path.insert(0, self.s)
+        return path
+
+    def distTo(self, v):
+        if not self.hasPathTo(v):
+            return -1
+        return self.distanceTo[v]
+
+    def __bfs(self, g, v):
+        # implementar BFS
+        pass
+
+
+if __name__ == "__main__":
+
+    g = Graph("exemplos/tinyG.txt")
+
+    bfs = BFS(g, "0")
+
+    for v in g.getVerts():
+        print(f"{v}: ", end="")
+        if bfs.hasPathTo(v):
+            for w in bfs.pathTo(v):
+                print(f"{w} ({bfs.distTo(v)}) ", end="")
+            print()
+        else:
+            print("Sem caminho para", v)
+    print()

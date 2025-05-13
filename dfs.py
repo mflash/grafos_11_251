@@ -8,19 +8,22 @@ class DepthFirstSearch:
         self.__dfs(g, s)
 
     def hasPathTo(self, v):
-        return False
+        return v in self.marked
 
     def pathTo(self, v):
         path = []
+        while v != self.s:
+            path.insert(0, v)
+            v = self.edgeTo[v]
+        path.insert(0, self.s)
         return path
 
     def __dfs(self, g, s):
-        print(f"Entrando: {s}")
         self.marked[s] = True
         for w in g.getAdj(s):
             if w not in self.marked:
+                self.edgeTo[w] = s
                 self.__dfs(g, w)
-        print(f"Saindo: {s}")
 
 if __name__ == "__main__":
 

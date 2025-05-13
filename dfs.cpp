@@ -14,25 +14,31 @@ DepthFirstSearch::DepthFirstSearch(Graph &g, string s)
 
 void DepthFirstSearch::dfs(Graph &g, string v)
 {
-	cout << "Entrando: " << v << endl;
+	// cout << "em " << v << endl;
 	marked.insert(v); // marca v como visitado
 	for (auto const &w : g.getAdj(v))
 	{
 		if (marked.find(w) == marked.end())
 		{
+			edgeTo[w] = v;
 			dfs(g, w);
 		}
 	}
-	cout << "Saindo: " << v << endl;
 }
 
 bool DepthFirstSearch::hasPathTo(string s)
 {
-	return false;
+	return marked.find(s) != marked.end();
 }
 
 vector<string> DepthFirstSearch::pathTo(string v)
 {
 	vector<string> path;
+	while (v != s)
+	{
+		path.insert(path.begin(), v);
+		v = edgeTo[v];
+	}
+	path.insert(path.begin(), s);
 	return path;
 }

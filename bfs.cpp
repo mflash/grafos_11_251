@@ -14,7 +14,25 @@ BreadthFirstSearch::BreadthFirstSearch(Graph &g, string s)
 
 void BreadthFirstSearch::bfs(Graph &g, string v)
 {
-	// Implementar BFS
+	queue<string> fila;
+	fila.push(v);
+	marked.insert(v);
+	_distTo[v] = 0;
+	while (!fila.empty())
+	{
+		string x = fila.front();
+		fila.pop();
+		// System.out.println("Visitando " + x);
+		cout << "Vértice: " << x << endl;
+		for (auto const &w : g.getAdj(x))
+		{
+			if (marked.find(w) == marked.end())
+			{
+				fila.push(w);
+				marked.insert(w);
+			}
+		}
+	}
 }
 
 bool BreadthFirstSearch::hasPathTo(string s)

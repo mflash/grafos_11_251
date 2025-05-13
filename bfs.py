@@ -28,8 +28,17 @@ class BFS:
         return self.distanceTo[v]
 
     def __bfs(self, g, v):
-        # implementar BFS
-        pass
+        fila = Queue()
+        fila.put(v)
+        self.distanceTo[v] = 0
+        self.marked[v] = True
+        while not fila.empty():
+            v = fila.get()
+            print("Vértice",v)
+            for w in g.getAdj(v):
+                if w not in self.marked:
+                    self.marked[w] = True
+                    fila.put(w)
 
 
 if __name__ == "__main__":
@@ -38,6 +47,7 @@ if __name__ == "__main__":
 
     bfs = BFS(g, "0")
 
+    """
     for v in g.getVerts():
         print(f"{v}: ", end="")
         if bfs.hasPathTo(v):
@@ -47,3 +57,4 @@ if __name__ == "__main__":
         else:
             print("Sem caminho para", v)
     print()
+    """

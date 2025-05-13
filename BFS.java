@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,14 +25,19 @@ public class BFS {
 
     private void bfs(String v) {
         // criar uma fila
+        List<String> fila = new LinkedList<>();
+        fila.add(v);
         marked.add(v);
-        for (String w : g.getAdj(v)) {
-            // Se não estiver marcado, visita
-            if (!marked.contains(w)) {
-                // indica que para chegar em w
-                // viemos por v
-                edgeTo.put(w, v);
-                bfs(w);
+        distTo.put(v, 0);
+        while (!fila.isEmpty()) {
+            v = fila.removeFirst();
+            System.out.println("Vértice: " + v);
+            for (String w : g.getAdj(v)) {
+                // Se não estiver marcado, visita
+                if (!marked.contains(w)) {
+                    marked.add(w);
+                    fila.add(w);
+                }
             }
         }
     }
@@ -60,13 +66,13 @@ public class BFS {
         Graph g = new Graph("exemplos/tinyG.txt");
         BFS dfs = new BFS(g, "0");
 
-        for (String v : g.getVerts()) {
-            System.out.print(v + ": ");
-            if (!dfs.hashPathTo(v))
-                System.out.println("Não tem caminho");
-            else {
-                System.out.println(dfs.pathTo(v));
-            }
-        }
+        // for (String v : g.getVerts()) {
+        // System.out.print(v + ": ");
+        // if (!dfs.hashPathTo(v))
+        // System.out.println("Não tem caminho");
+        // else {
+        // System.out.println(dfs.pathTo(v));
+        // }
+        // }
     }
 }

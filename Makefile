@@ -1,5 +1,7 @@
 CPPFLAGS = -Wall -g -std=c++11   # Opções do compilador: todos warnings e debug info
 
+all: appgraph appdigraph appdfs
+
 # classe Graph
 appgraph = appgraph
 appgraph_src = appgraph.cpp graph.cpp
@@ -23,8 +25,6 @@ $(appdgraph): $(appdgraph_obj)
 
 $(appdfs): $(appdfs_obj)
 	g++ $(CPPFLAGS) $(appdfs_obj) -o $@
-
-all: appgraph appdigraph appdfs
 
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appdfs)

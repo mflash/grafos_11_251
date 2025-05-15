@@ -9,7 +9,6 @@ int main()
   Graph g("exemplos/tinyG.txt");
   BreadthFirstSearch bfs(g, "0");
 
-  /*
   for (auto const &v : g.getVerts())
   {
     cout << v << ": ";
@@ -22,5 +21,4 @@ int main()
       cout << "SEM CAMINHO";
     cout << endl;
   }
-  */
 }

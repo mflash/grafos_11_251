@@ -22,12 +22,15 @@ void BreadthFirstSearch::bfs(Graph &g, string v)
 	{
 		string x = fila.front();
 		fila.pop();
+		int dist = _distTo[x];
 		// System.out.println("Visitando " + x);
-		cout << "Vértice: " << x << endl;
 		for (auto const &w : g.getAdj(x))
 		{
 			if (marked.find(w) == marked.end())
 			{
+				edgeTo[w] = x;
+				_distTo[w] = dist + 1;
+				// System.out.println(" >> adicionando " + w);
 				fila.push(w);
 				marked.insert(w);
 			}

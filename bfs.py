@@ -1,7 +1,7 @@
 from graph import Graph
 from queue import Queue
 
-class BFS:
+class BreadthFirstSearch:
     def __init__(self, g, s):
         self.s = s
         self.marked = {}
@@ -34,10 +34,12 @@ class BFS:
         self.marked[v] = True
         while not fila.empty():
             v = fila.get()
-            print("Vértice",v)
+            dist = self.distanceTo[v]
             for w in g.getAdj(v):
                 if w not in self.marked:
                     self.marked[w] = True
+                    self.edgeTo[w] = v
+                    self.distanceTo[w] = dist + 1
                     fila.put(w)
 
 
@@ -45,9 +47,8 @@ if __name__ == "__main__":
 
     g = Graph("exemplos/tinyG.txt")
 
-    bfs = BFS(g, "0")
+    bfs = BreadthFirstSearch(g, "0")
 
-    """
     for v in g.getVerts():
         print(f"{v}: ", end="")
         if bfs.hasPathTo(v):
@@ -57,4 +58,3 @@ if __name__ == "__main__":
         else:
             print("Sem caminho para", v)
     print()
-    """

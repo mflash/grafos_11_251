@@ -37,6 +37,8 @@ public class BFS {
                 if (!marked.contains(w)) {
                     marked.add(w);
                     fila.add(w);
+                    edgeTo.put(w, v);
+                    distTo.put(w, distTo.get(v) + 1);
                 }
             }
         }
@@ -62,17 +64,21 @@ public class BFS {
         return path;
     }
 
+    public int distTo(String v) {
+        return distTo.get(v);
+    }
+
     public static void main(String[] args) {
         Graph g = new Graph("exemplos/tinyG.txt");
         BFS dfs = new BFS(g, "0");
 
-        // for (String v : g.getVerts()) {
-        // System.out.print(v + ": ");
-        // if (!dfs.hashPathTo(v))
-        // System.out.println("Não tem caminho");
-        // else {
-        // System.out.println(dfs.pathTo(v));
-        // }
-        // }
+        for (String v : g.getVerts()) {
+            System.out.print(v + ": ");
+            if (!dfs.hashPathTo(v))
+                System.out.println("Não tem caminho");
+            else {
+                System.out.println(dfs.pathTo(v) + " (" + dfs.distTo(v) + ")");
+            }
+        }
     }
 }

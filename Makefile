@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -g -std=c++11   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs appucycle appdcycle
+all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo
 
 # classe Graph
 appgraph = appgraph
@@ -32,6 +32,11 @@ appdcycle = appdcycle
 appdcycle_src = appdirectedcycle.cpp directedcycle.cpp digraph.cpp graph.cpp
 appdcycle_obj = $(appdcycle_src:.cpp=.o)
 
+# Ord. Topológica
+apptopo = apptopo
+apptopo_src = apptopo.cpp graph.cpp digraph.cpp topological.cpp
+apptopo_obj = $(apptopo_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -50,7 +55,11 @@ $(appucycle): $(appucycle_obj)
 $(appdcycle): $(appdcycle_obj)
 	g++ $(CPPFLAGS) $(appdcycle_obj) -o $@
 
+$(apptopo): $(apptopo_obj)
+	g++ $(CPPFLAGS) $(apptopo_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appdfs) \
-		 $(appbfs_obj) $(appbfs) $(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj)
+		 $(appbfs_obj) $(appbfs) $(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) \
+		 $(apptopo_obj) $(apptopo)
 	   	

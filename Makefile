@@ -1,6 +1,6 @@
 CPPFLAGS = -Wall -g -std=c++11   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo
+all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo appewgraph appufind
 
 # classe Graph
 appgraph = appgraph
@@ -42,6 +42,16 @@ apptopocc = apptopocc
 apptopocc_src = apptopocc.cpp graph.cpp digraph.cpp topological.cpp
 apptopocc_obj = $(apptopocc_src:.cpp=.o)
 
+# classe UnionFind
+appufind = appufind
+appufind_src = appunionfind.cpp unionfind.cpp 
+appufind_obj = $(appufind_src:.cpp=.o)
+
+# classe EdgeWeightedGraph
+appewgraph = appewgraph
+appewgraph_src = appewgraph.cpp edgeweightedgraph.cpp
+appewgraph_obj = $(appewgraph_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -66,9 +76,17 @@ $(apptopo): $(apptopo_obj)
 $(apptopocc): $(apptopocc_obj)
 	g++ $(CPPFLAGS) $(apptopocc_obj) -o $@
 
+$(appewgraph): $(appewgraph_obj)
+	g++ $(CPPFLAGS) $(appewgraph_obj) -o $@
+
+$(appufind): $(appufind_obj)
+	g++ $(CPPFLAGS) $(appufind_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appdfs) \
 		 $(appbfs_obj) $(appbfs) $(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) \
 		 $(apptopo_obj) $(apptopo) \
-		 $(apptopocc_obj) $(apptopo_cc)
+		 $(apptopocc_obj) $(apptopo_cc) \
+		 $(appewgraph_obj) $(appewgraph) \
+		 $(appufind) $(appufind_obj)
 	   	

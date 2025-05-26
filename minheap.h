@@ -40,6 +40,10 @@ class MinHeap {
     for (int i = 0; i < size; i++) heap.push_back(arr[i]);
   }
 
+  bool isEmpty() const {
+    return heap.size() <= 1;
+  }
+
   void sort() {
     int n = heap.size() - 1;
     // 1. Transformar o vetor em um heap
@@ -64,12 +68,12 @@ class MinHeap {
     swim(heap.size() - 1);
   }
 
-  T get() {
+  T delMin() {
     if (heap.size() <= 1) throw std::out_of_range("Heap is empty");
     T res = heap[1];
     heap[1] = heap.back();
     heap.pop_back();
-    sink(1, heap.size-1);
+    sink(1, heap.size()-1);
     return res;
   }
 

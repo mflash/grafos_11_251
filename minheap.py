@@ -31,7 +31,7 @@ class MinHeap:
         self.heap[k], self.heap[j] = self.heap[j], self.heap[k]
         k = j
  
-    def get(self):
+    def delMin(self):
         res = self.heap[1]
         #print("move",self.heap[len(self.heap)-1],"to top")
         self.heap[1] = self.heap[len(self.heap)-1]

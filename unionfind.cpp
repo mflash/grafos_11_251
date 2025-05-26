@@ -3,9 +3,9 @@
 
 using namespace std;
 
-UnionFind::UnionFind(EdgeWeightedGraph* g)
+UnionFind::UnionFind(const EdgeWeightedGraph& g)
 {
-    set<string>& verts = g->getVerts();
+    set<string> verts = g.getVerts();
 		this->totalSets = verts.size();
 		for(const auto& v: verts) {
       uf[v] = v;

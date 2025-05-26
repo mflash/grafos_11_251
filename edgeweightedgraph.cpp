@@ -28,7 +28,17 @@ EdgeWeightedGraph::EdgeWeightedGraph(string filename) {
 
 vector<Edge> EdgeWeightedGraph::getAdj(string v) { return graph[v]; }
 
-set<string>& EdgeWeightedGraph::getVerts() { return vertices; }
+set<string> EdgeWeightedGraph::getVerts() const { return vertices; }
+
+set<Edge> EdgeWeightedGraph::getEdges() const {
+  set<Edge> edges;
+  for (const auto& pair : graph) {
+    for (const Edge& e : pair.second) {
+      edges.insert(e);
+    }
+  }
+  return edges;
+}
 
 void EdgeWeightedGraph::addEdge(string v, string w, float weight) {
   Edge e(v, w, weight);

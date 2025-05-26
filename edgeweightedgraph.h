@@ -14,7 +14,8 @@ class EdgeWeightedGraph {
   EdgeWeightedGraph(std::string filename);
 
   std::vector<Edge> getAdj(std::string v);
-  std::set<std::string>& getVerts();
+  std::set<std::string> getVerts() const;
+  std::set<Edge> getEdges() const;
 
   void addEdge(std::string v, std::string w, float weight);
 

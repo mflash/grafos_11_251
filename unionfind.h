@@ -8,7 +8,7 @@
 class UnionFind
 {
 public:
-    UnionFind(EdgeWeightedGraph* g);
+    UnionFind(const EdgeWeightedGraph& g);
     std::string find(std::string v);
     void do_union(std::string v, std::string w);
     int getTotalSets() const { return totalSets; }

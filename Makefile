@@ -44,7 +44,7 @@ apptopocc_obj = $(apptopocc_src:.cpp=.o)
 
 # classe UnionFind
 appufind = appufind
-appufind_src = appunionfind.cpp unionfind.cpp 
+appufind_src = appunionfind.cpp unionfind.cpp edgeweightedgraph.cpp
 appufind_obj = $(appufind_src:.cpp=.o)
 
 # classe EdgeWeightedGraph

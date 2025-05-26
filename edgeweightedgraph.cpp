@@ -28,7 +28,7 @@ EdgeWeightedGraph::EdgeWeightedGraph(string filename) {
 
 vector<Edge> EdgeWeightedGraph::getAdj(string v) { return graph[v]; }
 
-set<string> EdgeWeightedGraph::getVerts() { return vertices; }
+set<string>& EdgeWeightedGraph::getVerts() { return vertices; }
 
 void EdgeWeightedGraph::addEdge(string v, string w, float weight) {
   Edge e(v, w, weight);

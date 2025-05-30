@@ -1,6 +1,6 @@
-CPPFLAGS = -Wall -g -std=c++11   # Opções do compilador: todos warnings e debug info
+CPPFLAGS = -Wall -g -std=c++17   # Opções do compilador: todos warnings e debug info
 
-all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo appewgraph appufind appkruskal appewdigraph
+all: appgraph appdigraph appdfs appbfs appucycle appdcycle apptopo appewgraph appufind appkruskal appewdigraph appindexminheap
 
 # classe Graph
 appgraph = appgraph
@@ -62,6 +62,11 @@ appewdigraph = appewdigraph
 appewdigraph_src = appewdigraph.cpp edgeweighteddigraph.cpp edgeweightedgraph.cpp
 appewdigraph_obj = $(appewdigraph_src:.cpp=.o)
 
+# classe IndexMinHeap
+appindexminheap = appindexminheap
+appindexminheap_src = appindexminheap.cpp
+appindexminheap_obj = $(appindexminheap_src:.cpp=.o)
+
 $(appgraph): $(appgraph_obj)
 	g++ $(CPPFLAGS) $(appgraph_obj) -o $@
 
@@ -98,6 +103,8 @@ $(appkruskal): $(appkruskal_obj)
 $(appewdigraph): $(appewdigraph_obj)
 	g++ $(CPPFLAGS) $(appewdigraph_obj) -o $@
 
+$(appindexminheap): $(appindexminheap_obj)
+	g++ $(CPPFLAGS) $(appindexminheap_obj) -o $@
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appdfs) \
 		 $(appbfs_obj) $(appbfs) $(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) \

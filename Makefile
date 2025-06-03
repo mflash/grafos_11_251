@@ -103,8 +103,9 @@ $(appkruskal): $(appkruskal_obj)
 $(appewdigraph): $(appewdigraph_obj)
 	g++ $(CPPFLAGS) $(appewdigraph_obj) -o $@
 
-$(appindexminheap): $(appindexminheap_obj)
+$(appindexminheap): $(appindexminheap_obj) indexminheap.h
 	g++ $(CPPFLAGS) $(appindexminheap_obj) -o $@
+
 clean:
 	-@ rm -f $(appgraph_obj) $(appgraph) $(appdgraph_obj) $(appdgraph) $(appdfs_obj) $(appdfs) \
 		 $(appbfs_obj) $(appbfs) $(appucycle) $(appucycle_obj) $(appdcycle) $(appdcycle_obj) \
@@ -113,6 +114,7 @@ clean:
 		 $(appewgraph_obj) $(appewgraph) \
 		 $(appufind) $(appufind_obj) \
 		 $(appkruskal) $(appkruskal_obj) \
-		 $(appewdigraph) $(appewdigraph_obj)
+		 $(appewdigraph) $(appewdigraph_obj) \
+		 $(appindexminheap) $(appindexminheap_obj)
 
 	   	

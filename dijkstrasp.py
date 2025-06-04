@@ -1,7 +1,7 @@
 from edgeweighteddigraph import EdgeWeightedDigraph
 from indexminheap import IndexMinHeap
 
-class DijsktraSP:
+class DijkstraSP:
     def __init__(self, g: EdgeWeightedDigraph, s: str):
         self.marked = {}
         self.edgeTo = {}
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     g = EdgeWeightedDigraph("exemplos/tinyEWD.txt")
 
-    dij = DijsktraSP(g, "0")
+    dij = DijkstraSP(g, "0")
 
     for v in sorted(g.getVerts()):
         print(f"{v}: ", end="")

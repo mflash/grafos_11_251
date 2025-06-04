@@ -16,6 +16,9 @@ class IndexMinHeap:
         self.dic[x[0]] = len(self.heap)-1
         self.swim(len(self.heap)-1)
 
+    def contains(self, k):
+        return k in self.dic
+
     def isEmpty(self):
         return len(self.heap) == 1
 

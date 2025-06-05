@@ -13,14 +13,42 @@ public class FloydWarshall {
 
         temCicloNegativo = false;
 
-        int v = g2.getTotalVerts();
-        dist = new double[v][v];
-        next = new int[v][v];
+        int totVert = g2.getTotalVerts();
+        dist = new double[totVert][totVert];
+        next = new int[totVert][totVert];
 
         // Inicializar as matrizes
-        // Use g.mapToArray para converter um nome de vértice (string) para um índice (linha ou coluna da matriz)
+        for (int linha = 0; linha < totVert; linha++)
+            for (int col = 0; col < totVert; col++) {
+                if (linha != col) {
+                    dist[linha][col] = Double.POSITIVE_INFINITY;
+                }
+                next[linha][col] = -1;
+            }
+
+        for (Edge e : g2.getEdges()) {
+            String u = e.getV();
+            String v = e.getW();
+            double weight = e.getWeight();
+            int ind_u = g.mapToArray(u);
+            int ind_v = g.mapToArray(v);
+            dist[ind_u][ind_v] = weight;
+            next[ind_u][ind_v] = ind_u;
+        }
+        // Use g.mapToArray para converter um nome de vértice (string) para um índice
+        // (linha ou coluna da matriz)
 
         // Executar o algoritmo!
+        for (int k = 0; k < totVert; k++) {
+            for (int j = 0; j < totVert; j++) {
+                for (int i = 0; i < totVert; i++) {
+                    if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        next[i][j] = next[k][j];
+                    }
+                }
+            }
+        }
     }
 
     public boolean hasPathTo(String u, String v) {
@@ -38,7 +66,8 @@ public class FloydWarshall {
     public Iterable<String> pathTo(String u, String v) {
         LinkedList<String> path = new LinkedList<>();
         // Reconstrua o caminho e retorne na lista
-        // use g.mapToString passando um índice para obter o nome do vértice correspondente (string)
+        // use g.mapToString passando um índice para obter o nome do vértice
+        // correspondente (string)
         return path;
     }
 

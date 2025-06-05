@@ -22,5 +22,6 @@ public class AppFloydWarshall {
                 }
             }
         }
+        System.out.println(g.toDot());
     }
 }

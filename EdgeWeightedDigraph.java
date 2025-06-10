@@ -31,7 +31,8 @@ public class EdgeWeightedDigraph extends EdgeWeightedGraph {
     sb.append("rankdir = LR;" + NEWLINE);
     sb.append("node [shape = circle];" + NEWLINE);
     for (Edge e : getEdges())
-      sb.append(String.format("\"%s\" -> \"%s\" [label=\"%.3f\"]", e.getV(), e.getW(), e.getWeight()) + NEWLINE);
+      sb.append(String.format("\"%s\" -> \"%s\" [label=\"%.3f\" %s]", e.getV(), e.getW(), e.getWeight(), e.getColor())
+          + NEWLINE);
     sb.append("}" + NEWLINE);
     return sb.toString();
   }
